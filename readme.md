@@ -26,6 +26,10 @@
 - ⚙️ EditorConfig - Consistent coding styles across editors and IDEs
 - 🗂 Path Mapping — Import components or images using the `@` prefix
 
+## 🕹️ Preview
+
+To see a preview of this project just click here: [Preview Website](https://www.tractian-challenge.gabrieldejesus.dev/)
+
 ## 🎨 Design
 
 If you want to see the design I created for this challenge, just click here: [Figma Design](https://www.figma.com/file/nUAj18mMktBpxWae9nWWMf/tractian-challenge)
@@ -109,10 +113,10 @@ docker-compose -f docker-compose.yml up -d
 TypeScript are pre-configured with custom path mappings. To import components or files, use the `@` prefix.
 
 ```tsx
-import Container from "@/components/Container";
+import Container from '@/components/Container';
 
 // To import images or other files from the public folder
-import Logo from "@/public/logo.svg";
+import Logo from '@/public/logo.svg';
 ```
 
 ## 🐞 Bugs, help, issues or new updates

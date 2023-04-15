@@ -21,7 +21,6 @@ export default function App({ Component, pageProps }: AppProps) {
         themeColor="#007aff"
         openGraph={{
           type: 'website',
-          locale: 'pt_BR',
           title: 'Tractian Challenge',
           description:
             'A Front End Software Engineer challenge to Tractian company.',
