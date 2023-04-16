@@ -1,14 +1,19 @@
+import { useState } from 'react';
+
 // components
 import Container from '@/components/Container';
 import Wrapper from '@/components/Wrapper';
 import Table from '@/components/Table';
+import Modal from '@/components/Modal';
 
-// utils
 import styles from './styles.module.css';
 
 export default function Main() {
+  const [showModal, setShowModal] = useState(false);
+
   const handlingTest = async () => {
     console.log('test');
+    setShowModal(true);
   };
 
   return (
@@ -38,6 +43,7 @@ export default function Main() {
           </Wrapper>
         </aside>
       </Container>
+      {showModal && <Modal setShowModal={setShowModal} />}
     </main>
   );
 }

@@ -4,7 +4,13 @@
   flex-direction: column;
   background: var(--white);
   padding: 16px 16px 40px 16px;
+  transition: var(--transition);
   box-shadow: 0px 10px 20px 0px #0000001a;
+}
+
+.wrapper:focus,
+.wrapper:hover {
+  box-shadow: 0px 10px 20px 0px #0000002d;
 }
 
 .headline {
@@ -23,12 +29,18 @@
 
 .options {
   border: 0;
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
   display: flex;
+  border-radius: 50%;
   align-items: center;
   justify-content: center;
   background: transparent;
+  transition: var(--transition);
+}
+
+.options:hover {
+  box-shadow: 0 0 0 2px var(--black);
 }
 
 /* Medium devices (tablets, 768px and up) */
