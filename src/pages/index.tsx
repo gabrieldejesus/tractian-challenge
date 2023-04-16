@@ -9,11 +9,13 @@ import Main from '@/components/Main';
 import { HomeProps } from '@/types';
 import { useDefault } from '@/contexts/DefaultContext';
 
-export default function Home({ users }: HomeProps) {
-  const { handleUsers } = useDefault();
+export default function Home({ users, companies, units }: HomeProps) {
+  const { handleUsers, handleCompanies, handleUnits } = useDefault();
 
   useEffect(() => {
     handleUsers(users);
+    handleCompanies(companies);
+    handleUnits(units);
   }, []);
 
   return (
@@ -26,10 +28,16 @@ export default function Home({ users }: HomeProps) {
 
 export async function getStaticProps() {
   const users = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users`);
-  const userData = await users.json();
+  const usersData = await users.json();
+
+  const companies = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/companies`);
+  const companiesData = await companies.json();
+
+  const units = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/units`);
+  const unitsData = await units.json();
 
   return {
-    props: { users: userData },
+    props: { users: usersData, companies: companiesData, units: unitsData },
     revalidate: 300,
   };
 }

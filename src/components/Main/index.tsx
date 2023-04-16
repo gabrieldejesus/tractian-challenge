@@ -5,10 +5,14 @@ import Container from '@/components/Container';
 import Wrapper from '@/components/Wrapper';
 import Table from '@/components/Table';
 import Modal from '@/components/Modal';
+import List from '@/components/List';
 
+// utils
+import { useDefault } from '@/contexts/DefaultContext';
 import styles from './styles.module.css';
 
 export default function Main() {
+  const { companies, units } = useDefault();
   const [showModal, setShowModal] = useState(false);
 
   const handlingTest = async () => {
@@ -31,11 +35,11 @@ export default function Main() {
 
         <aside className={styles.aside}>
           <Wrapper title="Companies" handlingOptions={handlingTest}>
-            Companies
+            <List companies={companies} />
           </Wrapper>
 
           <Wrapper title="Units" handlingOptions={handlingTest}>
-            Units
+            <List units={units} />
           </Wrapper>
 
           <Wrapper title="Work Orders" handlingOptions={handlingTest}>
@@ -43,6 +47,7 @@ export default function Main() {
           </Wrapper>
         </aside>
       </Container>
+
       {showModal && <Modal setShowModal={setShowModal} />}
     </main>
   );
