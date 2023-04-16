@@ -1,0 +1,53 @@
+.main {
+  display: flex;
+  padding-bottom: 90px;
+  justify-content: center;
+}
+
+.container {
+  flex-direction: column;
+}
+
+.section,
+.aside {
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.section {
+  margin-top: 32px;
+}
+
+.aside {
+  margin-top: 24px;
+}
+
+/* Extra large devices (large desktops, 992px and up) */
+@media (min-width: 992px) {
+  .container {
+    flex-direction: row;
+  }
+
+  .section {
+    flex: 2;
+    margin-right: 24px;
+  }
+
+  .aside {
+    flex: 1;
+    margin-top: 32px;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .section {
+    margin-right: 0;
+    max-width: 796px;
+  }
+
+  .aside {
+    max-width: 360px;
+  }
+}
