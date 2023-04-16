@@ -26,13 +26,14 @@ export default function Header() {
           </button>
 
           <div className={styles.infoUser}>
-            <Image
-              alt="User"
-              width={434}
-              height={434}
-              src="/images/user.jpeg"
-              className={styles.images}
-            />
+            <div className={styles.photo}>
+              <Image
+                alt="User"
+                width={44}
+                height={44}
+                src="/images/user.jpeg"
+              />
+            </div>
 
             <div className={styles.info}>
               <span className={styles.name}>Gabriel de Jesus</span>

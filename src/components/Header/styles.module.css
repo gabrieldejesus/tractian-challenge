@@ -33,10 +33,11 @@
   align-items: center;
 }
 
-.infoUser img {
-  width: 44px;
-  height: 44px;
+.photo {
   object-fit: cover;
+}
+
+.photo img {
   border-radius: 50%;
 }
 
