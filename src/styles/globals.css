@@ -2,6 +2,7 @@
   --white: #ffffff;
   --black: #000000;
   --blue: #007aff;
+  --gray: #f6f7f9;
   --scrollbar-background: transparent;
 
   --transition: all ease-in-out 0.3s;
@@ -13,6 +14,7 @@
     --white: color(display-p3 1.0001 1 0.9999);
     --black: color(display-p3 0 0 0);
     --blue: color(display-p3 0.2046 0.471 0.966);
+    --gray: color(display-p3 0.9655 0.9685 0.9756);
   }
 }
 
@@ -25,12 +27,11 @@
 }
 
 html {
-  background: var(--blue);
+  background: var(--gray);
 }
 
 body {
   scrollbar-width: thin;
-  background: var(--white);
   text-rendering: geometricprecision;
   font-family: 'Poppins', sans-serif;
   scrollbar-color: var(--blue) var(--scrollbar-background);
