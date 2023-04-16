@@ -3,6 +3,8 @@
   --black: #000000;
   --blue: #007aff;
   --gray: #f6f7f9;
+  --gray-2: #f0f0f0;
+  --transparent-blue: #14171f99;
   --scrollbar-background: transparent;
 
   --transition: all ease-in-out 0.3s;
@@ -15,6 +17,8 @@
     --black: color(display-p3 0 0 0);
     --blue: color(display-p3 0.2046 0.471 0.966);
     --gray: color(display-p3 0.9655 0.9685 0.9756);
+    --gray-2: color(display-p3 0.9412 0.9412 0.9411);
+    --transparent-blue: color(display-p3 0.0806 0.0898 0.1189 / 0.6);
   }
 }
 
@@ -105,6 +109,11 @@ button {
 a,
 a:hover {
   text-decoration: none;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
 }
 
 input,

@@ -3,6 +3,9 @@ import { useRouter } from 'next/router';
 import { DefaultSeo } from 'next-seo';
 import Head from 'next/head';
 
+// contexts
+import { DefaultProvider } from '@/contexts/DefaultContext';
+
 import '@/styles/globals.css';
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -41,7 +44,9 @@ export default function App({ Component, pageProps }: AppProps) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <Component {...pageProps} />
+      <DefaultProvider>
+        <Component {...pageProps} />
+      </DefaultProvider>
     </>
   );
 }

@@ -1,10 +1,12 @@
 // components
 import Container from '@/components/Container';
 import Wrapper from '@/components/Wrapper';
+import Table from '@/components/Table';
 
+// utils
 import styles from './styles.module.css';
 
-export default function Area() {
+export default function Main() {
   const handlingTest = async () => {
     console.log('test');
   };
@@ -18,7 +20,7 @@ export default function Area() {
           </Wrapper>
 
           <Wrapper title="Users" handlingOptions={handlingTest}>
-            Users
+            <Table />
           </Wrapper>
         </section>
 
