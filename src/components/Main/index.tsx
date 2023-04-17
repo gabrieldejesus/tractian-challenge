@@ -31,16 +31,38 @@ export default function Main() {
 
         <aside className={styles.aside}>
           <Wrapper title="Companies" setShowModal={setShowModal}>
-            <List companies={companies} />
+            {companies && (
+              <ul className={styles.list}>
+                {companies?.map((company, index) => (
+                  <li key={index} className={styles.item}>
+                    <span className={styles.title}>{company.name}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            {!companies.length && (
+              <span className={styles.title}>No company found...</span>
+            )}
           </Wrapper>
 
           <Wrapper title="Units" setShowModal={setShowModal}>
-            <List units={units} />
+            <ul className={styles.list}>
+              {units?.map((unit, index) => (
+                <li key={index} className={styles.item}>
+                  <span className={styles.title}>{unit.name}</span>
+                </li>
+              ))}
+            </ul>
+
+            {!units.length && (
+              <span className={styles.title}>No unit found...</span>
+            )}
           </Wrapper>
 
-          <Wrapper title="Work Orders" setShowModal={setShowModal}>
+          {/* <Wrapper title="Work Orders" setShowModal={setShowModal}>
             Work Orders
-          </Wrapper>
+          </Wrapper> */}
         </aside>
       </Container>
 

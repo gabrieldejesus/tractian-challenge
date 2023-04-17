@@ -1,3 +1,4 @@
+import { ToastContainer } from 'react-toastify';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import { DefaultSeo } from 'next-seo';
@@ -7,6 +8,7 @@ import Head from 'next/head';
 import { DefaultProvider } from '@/contexts/DefaultContext';
 
 import '@/styles/globals.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -44,6 +46,17 @@ export default function App({ Component, pageProps }: AppProps) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
+
+      <ToastContainer
+        position="bottom-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        closeOnClick={true}
+        pauseOnHover={true}
+        draggable={true}
+        theme="light"
+      />
+
       <DefaultProvider>
         <Component {...pageProps} />
       </DefaultProvider>
