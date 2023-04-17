@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 // components
 import Container from '@/components/Container';
+import Companies from '@/components/Companies';
 import Wrapper from '@/components/Wrapper';
 import Table from '@/components/Table';
 import Modal from '@/components/Modal';
@@ -12,43 +13,46 @@ import { useDefault } from '@/contexts/DefaultContext';
 import styles from './styles.module.css';
 
 export default function Main() {
-  const { companies, units } = useDefault();
+  const { companies, units, modalSelected } = useDefault();
   const [showModal, setShowModal] = useState(false);
-
-  const handlingTest = async () => {
-    console.log('test');
-    setShowModal(true);
-  };
 
   return (
     <main className={styles.main}>
       <Container className={styles.container}>
         <section className={styles.section}>
-          <Wrapper title="Assets" handlingOptions={handlingTest}>
+          <Wrapper title="Assets" setShowModal={setShowModal}>
             Assets
           </Wrapper>
 
-          <Wrapper title="Users" handlingOptions={handlingTest}>
+          <Wrapper title="Users" setShowModal={setShowModal}>
             <Table />
           </Wrapper>
         </section>
 
         <aside className={styles.aside}>
-          <Wrapper title="Companies" handlingOptions={handlingTest}>
+          <Wrapper title="Companies" setShowModal={setShowModal}>
             <List companies={companies} />
           </Wrapper>
 
-          <Wrapper title="Units" handlingOptions={handlingTest}>
+          <Wrapper title="Units" setShowModal={setShowModal}>
             <List units={units} />
           </Wrapper>
 
-          <Wrapper title="Work Orders" handlingOptions={handlingTest}>
+          <Wrapper title="Work Orders" setShowModal={setShowModal}>
             Work Orders
           </Wrapper>
         </aside>
       </Container>
 
-      {showModal && <Modal setShowModal={setShowModal} />}
+      {showModal && (
+        <Modal
+          title={modalSelected}
+          setShowModal={setShowModal}
+          description={`Add, edit or delete one of your ${modalSelected.toLowerCase()}.`}
+        >
+          {modalSelected === 'Companies' && <Companies />}
+        </Modal>
+      )}
     </main>
   );
 }

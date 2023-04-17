@@ -13,9 +13,11 @@ const contextDefaultValues: DefaultContextProps = {
   users: [],
   companies: [],
   units: [],
+  modalSelected: '',
   handleUsers: () => null,
   handleCompanies: () => null,
   handleUnits: () => null,
+  handleModalSelected: () => null,
 };
 
 const DefaultContext = createContext<DefaultContextProps>(contextDefaultValues);
@@ -28,6 +30,7 @@ export function DefaultProvider({ children }: DefaultProviderProps) {
   const [users, setUsers] = useState<UserProps[]>([]);
   const [companies, setCompanies] = useState<CompanyProps[]>([]);
   const [units, setUnits] = useState<UnitProps[]>([]);
+  const [modalSelected, setModalSelected] = useState<string>('');
 
   const handleUsers = (value: UserProps[]) => {
     setUsers(value);
@@ -41,13 +44,19 @@ export function DefaultProvider({ children }: DefaultProviderProps) {
     setUnits(value);
   };
 
+  const handleModalSelected = (value: string) => {
+    setModalSelected(value);
+  };
+
   const value = {
     users,
     companies,
     units,
+    modalSelected,
     handleUsers,
     handleCompanies,
     handleUnits,
+    handleModalSelected,
   };
 
   return (

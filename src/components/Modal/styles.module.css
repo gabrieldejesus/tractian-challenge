@@ -21,11 +21,51 @@
 }
 
 .content {
+  padding: 24px;
   display: flex;
+  margin: 0 23px;
+  overflow-y: auto;
+  position: relative;
   border-radius: 10px;
   flex-direction: column;
   background: var(--white);
+  min-width: calc(100vw - 60%);
+  max-height: calc(100vh - 80px);
   box-shadow: 0px 10px 20px 0px #0000001a;
+}
+
+.close {
+  border: 0;
+  top: 34px;
+  right: 24px;
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+.title,
+.paragraph {
+  color: var(--black);
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 36px;
+}
+
+.paragraph {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  margin-bottom: 32px;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
 }
 
 @keyframes fade-in {

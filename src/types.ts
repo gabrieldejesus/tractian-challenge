@@ -6,9 +6,11 @@ export interface DefaultContextProps {
   users: UserProps[];
   companies: CompanyProps[];
   units: UnitProps[];
+  modalSelected: string;
   handleUsers: (value: UserProps[]) => void;
   handleCompanies: (value: CompanyProps[]) => void;
   handleUnits: (value: UnitProps[]) => void;
+  handleModalSelected: (value: string) => void;
 }
 
 export interface UserProps {
