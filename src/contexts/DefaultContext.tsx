@@ -7,7 +7,7 @@ import {
   DefaultProviderProps,
   CompanyProps,
   UnitProps,
-  WorkorderProps,
+  WorkOrderProps,
 } from '@/types';
 
 const contextDefaultValues: DefaultContextProps = {
@@ -20,7 +20,7 @@ const contextDefaultValues: DefaultContextProps = {
   handleCompanies: () => null,
   handleUnits: () => null,
   handleModalSelected: () => null,
-  handleWorkorders: () => null,
+  handleWorkOrders: () => null,
 };
 
 const DefaultContext = createContext<DefaultContextProps>(contextDefaultValues);
@@ -34,7 +34,7 @@ export function DefaultProvider({ children }: DefaultProviderProps) {
   const [companies, setCompanies] = useState<CompanyProps[]>([]);
   const [units, setUnits] = useState<UnitProps[]>([]);
   const [modalSelected, setModalSelected] = useState<string>('');
-  const [workorders, setWorkorders] = useState<WorkorderProps[]>([]);
+  const [workorders, setWorkorders] = useState<WorkOrderProps[]>([]);
 
   const handleUsers = (value: UserProps[]) => {
     setUsers(value);
@@ -52,7 +52,7 @@ export function DefaultProvider({ children }: DefaultProviderProps) {
     setModalSelected(value);
   };
 
-  const handleWorkorders = (value: WorkorderProps[]) => {
+  const handleWorkOrders = (value: WorkOrderProps[]) => {
     setWorkorders(value);
   };
 
@@ -66,7 +66,7 @@ export function DefaultProvider({ children }: DefaultProviderProps) {
     handleCompanies,
     handleUnits,
     handleModalSelected,
-    handleWorkorders,
+    handleWorkOrders,
   };
 
   return (

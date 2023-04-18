@@ -123,6 +123,33 @@
   transform: rotate(45deg);
 }
 
+.status {
+  border: 0;
+  top: 28px;
+  right: 56px;
+  display: flex;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: var(--black);
+  position: absolute;
+  align-items: center;
+  background: var(--gray);
+  justify-content: center;
+  text-transform: capitalize;
+}
+
+.inProgress {
+  color: #9a6700;
+  background: #fff8c5;
+}
+
+.completed {
+  color: #8250df;
+  background: #fbefff;
+}
+
 @keyframes fade-in {
   from {
     opacity: 0;

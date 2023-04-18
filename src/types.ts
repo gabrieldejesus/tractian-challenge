@@ -7,12 +7,12 @@ export interface DefaultContextProps {
   companies: CompanyProps[];
   units: UnitProps[];
   modalSelected: string;
-  workorders: WorkorderProps[];
+  workorders: WorkOrderProps[];
   handleUsers: (value: UserProps[]) => void;
   handleCompanies: (value: CompanyProps[]) => void;
   handleUnits: (value: UnitProps[]) => void;
   handleModalSelected: (value: string) => void;
-  handleWorkorders: (value: WorkorderProps[]) => void;
+  handleWorkOrders: (value: WorkOrderProps[]) => void;
 }
 
 export interface UserProps {
@@ -39,7 +39,7 @@ export interface ChecklistProps {
   task: string;
 }
 
-export interface WorkorderProps {
+export interface WorkOrderProps {
   id: number;
   title: string;
   status: string;
@@ -53,5 +53,5 @@ export interface HomeProps {
   users: UserProps[];
   companies: CompanyProps[];
   units: UnitProps[];
-  workorders: WorkorderProps[];
+  workorders: WorkOrderProps[];
 }

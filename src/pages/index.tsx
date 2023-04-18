@@ -15,14 +15,14 @@ export default function Home({
   units,
   workorders,
 }: HomeProps) {
-  const { handleUsers, handleCompanies, handleUnits, handleWorkorders } =
+  const { handleUsers, handleCompanies, handleUnits, handleWorkOrders } =
     useDefault();
 
   useEffect(() => {
     handleUsers(users);
     handleCompanies(companies);
     handleUnits(units);
-    handleWorkorders(workorders);
+    handleWorkOrders(workorders);
   }, []);
 
   return (

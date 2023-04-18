@@ -10,7 +10,7 @@ import Spinner from '@/components/Spinner';
 // utils
 import { UnitProps } from '@/types';
 import { useDefault } from '@/contexts/DefaultContext';
-import styles from '@/components/Companies/styles.module.css';
+import styles from '@/styles/list.module.css';
 
 type IFormInput = { name: string };
 

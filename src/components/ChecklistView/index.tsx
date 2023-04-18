@@ -1,33 +1,43 @@
 import { Dispatch, SetStateAction } from 'react';
 import Image from 'next/image';
+import cn from 'classnames';
 
+// utils
+import { WorkOrderProps } from '@/types';
 import styles from './styles.module.css';
 
-import { ChecklistProps } from '@/types';
-
 interface ChecklistViewProps {
-  checklistSelected: ChecklistProps[];
-  setChecklistSelected: Dispatch<SetStateAction<ChecklistProps[] | undefined>>;
+  workSelected: WorkOrderProps;
+  setWorkSelected: Dispatch<SetStateAction<WorkOrderProps[] | undefined>>;
 }
 
 export default function ChecklistView({
-  checklistSelected,
-  setChecklistSelected,
+  workSelected,
+  setWorkSelected,
 }: ChecklistViewProps) {
   return (
     <div
       className={styles.checklist}
-      onClick={() => setChecklistSelected(undefined)}
+      onClick={() => setWorkSelected(undefined)}
     >
       <div className={styles.content} onClick={(e) => e.stopPropagation()}>
         <div>
           <h2 className={styles.title}>Checklist</h2>
           <p className={styles.paragraph}>Check here your task list</p>
+          <span
+            className={cn(
+              styles.status,
+              workSelected.status === 'in progress' && styles.inProgress,
+              workSelected.status === 'completed' && styles.completed,
+            )}
+          >
+            {workSelected.status}
+          </span>
 
           <button
             type="button"
             className={styles.close}
-            onClick={() => setChecklistSelected(undefined)}
+            onClick={() => setWorkSelected(undefined)}
           >
             <Image src="/close.svg" alt="Close" width={16} height={16} />
           </button>
@@ -35,7 +45,7 @@ export default function ChecklistView({
 
         <div className={styles.body}>
           <ul className={styles.list}>
-            {checklistSelected.map((checklist, index) => (
+            {workSelected.checklist.map((checklist, index) => (
               <li key={index} className={styles.item}>
                 <label htmlFor={`checkbox-${index}`} className={styles.task}>
                   <input

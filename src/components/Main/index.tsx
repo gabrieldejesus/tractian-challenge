@@ -4,6 +4,7 @@ import Image from 'next/image';
 // components
 import ChecklistView from '@/components/ChecklistView';
 import UsersTable from '@/components/UsersTable';
+import WorkOrders from '@/components/WorkOrders';
 import Container from '@/components/Container';
 import Companies from '@/components/Companies';
 import Wrapper from '@/components/Wrapper';
@@ -12,13 +13,12 @@ import Units from '@/components/Units';
 
 // utils
 import { useDefault } from '@/contexts/DefaultContext';
-import { ChecklistProps } from '@/types';
+import { ChecklistProps, WorkOrderProps } from '@/types';
 import styles from './styles.module.css';
 
 export default function Main() {
   const [showModal, setShowModal] = useState(false);
-  const [checklistSelected, setChecklistSelected] =
-    useState<ChecklistProps[]>();
+  const [workSelected, setWorkSelected] = useState<WorkOrderProps>();
   const { companies, units, workorders, modalSelected } = useDefault();
 
   return (
@@ -74,7 +74,7 @@ export default function Main() {
                   <button
                     type="button"
                     className={styles.button}
-                    onClick={() => setChecklistSelected(work.checklist)}
+                    onClick={() => setWorkSelected(work)}
                   >
                     <Image src="/note.svg" alt="Note" width={18} height={18} />
                   </button>
@@ -86,10 +86,10 @@ export default function Main() {
               <span className={styles.title}>No work orders found...</span>
             )}
 
-            {checklistSelected && (
+            {workSelected && (
               <ChecklistView
-                checklistSelected={checklistSelected}
-                setChecklistSelected={setChecklistSelected}
+                workSelected={workSelected}
+                setWorkSelected={setWorkSelected}
               />
             )}
           </Wrapper>
@@ -105,6 +105,7 @@ export default function Main() {
           {modalSelected === 'Companies' && <Companies />}
           {modalSelected === 'Units' && <Units />}
           {modalSelected === 'Users' && <UsersTable tableMode="admin" />}
+          {modalSelected === 'Work Orders' && <WorkOrders />}
         </Modal>
       )}
     </main>
