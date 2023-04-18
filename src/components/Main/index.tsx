@@ -13,7 +13,7 @@ import Units from '@/components/Units';
 
 // utils
 import { useDefault } from '@/contexts/DefaultContext';
-import { ChecklistProps, WorkOrderProps } from '@/types';
+import { WorkOrderProps } from '@/types';
 import styles from './styles.module.css';
 
 export default function Main() {

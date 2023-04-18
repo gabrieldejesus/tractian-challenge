@@ -8,7 +8,7 @@ import styles from './styles.module.css';
 
 interface ChecklistViewProps {
   workSelected: WorkOrderProps;
-  setWorkSelected: Dispatch<SetStateAction<WorkOrderProps[] | undefined>>;
+  setWorkSelected: Dispatch<SetStateAction<WorkOrderProps | undefined>>;
 }
 
 export default function ChecklistView({
