@@ -8,54 +8,51 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import Spinner from '@/components/Spinner';
 
 // utils
-import { CompanyProps } from '@/types';
+import { UnitProps } from '@/types';
 import { useDefault } from '@/contexts/DefaultContext';
-import styles from './styles.module.css';
+import styles from '@/components/Companies/styles.module.css';
 
 type IFormInput = { name: string };
 
-export default function Companies() {
+export default function Units() {
   const [loading, setLoading] = useState(false);
   const [mode, setMode] = useState<'add' | 'edit'>();
-  const { companies, handleCompanies } = useDefault();
+  const { units, handleUnits } = useDefault();
   const { register, handleSubmit, resetField } = useForm<IFormInput>();
-  const [selectedCompany, setSelectedCompany] = useState<CompanyProps>();
+  const [selectedUnit, setSelectedUnit] = useState<UnitProps>();
 
-  const handleany: SubmitHandler<IFormInput> = async (data) => {
+  const handleAddUnit: SubmitHandler<IFormInput> = async (data) => {
     try {
       setLoading(true);
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/companies`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
-        },
-      );
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/units`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
 
       if (!response.ok) {
         setLoading(false);
-        return toast.error('Error adding company');
+        return toast.error('Error adding unit');
       }
 
-      const newCompany = await response.json();
-      const updatedCompanies = [...companies, newCompany];
-      handleCompanies(updatedCompanies);
+      const newUnit = await response.json();
+      const updatedUnits = [...units, newUnit];
+      handleUnits(updatedUnits);
       setMode(undefined);
       setLoading(false);
       resetField('name');
-      return toast.success('New company added successfully');
+      return toast.success('New unit added successfully');
     } catch (error) {
       setLoading(false);
-      return toast.error('Error adding new company');
+      return toast.error('Error adding new unit');
     }
   };
 
-  const handleFoundCompany = async (id: number) => {
+  const handleFoundUnit = async (id: number) => {
     try {
       setLoading(true);
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/companies/${id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/units/${id}`,
         {
           method: 'GET',
           headers: { 'Content-Type': 'application/json' },
@@ -64,24 +61,24 @@ export default function Companies() {
 
       if (!response.ok) {
         setLoading(false);
-        return toast.error('Error found company');
+        return toast.error('Error found unit');
       }
 
       const data = await response.json();
       setMode('edit');
       setLoading(false);
-      return setSelectedCompany(data);
+      return setSelectedUnit(data);
     } catch (error) {
       setLoading(false);
-      return toast.error('Error in found company');
+      return toast.error('Error in found unit');
     }
   };
 
-  const handleEditCompany: SubmitHandler<IFormInput> = async (data) => {
+  const handleEditUnit: SubmitHandler<IFormInput> = async (data) => {
     try {
       setLoading(true);
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/companies/${selectedCompany?.id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/units/${selectedUnit?.id}`,
         {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
@@ -91,33 +88,32 @@ export default function Companies() {
 
       if (!response.ok) {
         setLoading(false);
-        return toast.error('Error updating company');
+        return toast.error('Error updating unit');
       }
 
-      const updatedCompany = await response.json();
+      const updatedUnit = await response.json();
 
-      const updatedCompanies = companies.map((company) => {
-        if (company.id === selectedCompany?.id)
-          return { ...company, ...updatedCompany };
-        return company;
+      const updatedUnits = units.map((unit) => {
+        if (unit.id === selectedUnit?.id) return { ...unit, ...updatedUnit };
+        return unit;
       });
 
-      handleCompanies(updatedCompanies);
+      handleUnits(updatedUnits);
       setMode(undefined);
       setLoading(false);
       resetField('name');
-      return toast.success('Company updated successfully');
+      return toast.success('Unit updated successfully');
     } catch (error) {
       setLoading(false);
-      return toast.error('Error updating company');
+      return toast.error('Error updating unit');
     }
   };
 
-  const handleDeleteCompany = async (id: number) => {
+  const handleDeleteUnit = async (id: number) => {
     try {
       setLoading(true);
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/companies/${id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/units/${id}`,
         {
           method: 'DELETE',
           headers: { 'Content-Type': 'application/json' },
@@ -126,16 +122,16 @@ export default function Companies() {
 
       if (!response.ok) {
         setLoading(false);
-        return toast.error('Error deleting company');
+        return toast.error('Error deleting unit');
       }
 
-      const updatedCompanies = companies.filter((company) => company.id !== id);
-      handleCompanies(updatedCompanies);
+      const updatedUnits = units.filter((unit) => unit.id !== id);
+      handleUnits(updatedUnits);
       setLoading(false);
-      return toast.success('Company deleted successfully');
+      return toast.success('Unity deleted successfully');
     } catch (error) {
       setLoading(false);
-      return toast.error('Error deleting company');
+      return toast.error('Error deleting unit');
     }
   };
 
@@ -144,15 +140,15 @@ export default function Companies() {
       {!mode ? (
         <>
           <ul className={styles.list}>
-            {companies.map((company, index) => (
+            {units.map((unit, index) => (
               <li key={index} className={styles.item}>
-                <span className={styles.name}>{company.name}</span>
+                <span className={styles.name}>{unit.name}</span>
 
                 <div className={styles.buttons}>
                   <button
                     type="button"
                     className={styles.edit}
-                    onClick={() => handleFoundCompany(company.id)}
+                    onClick={() => handleFoundUnit(unit.id)}
                   >
                     <Image src="/edit.svg" alt="Edit" width={24} height={24} />
                   </button>
@@ -160,7 +156,7 @@ export default function Companies() {
                   <button
                     type="button"
                     className={styles.delete}
-                    onClick={() => handleDeleteCompany(company.id)}
+                    onClick={() => handleDeleteUnit(unit.id)}
                   >
                     <Image
                       src="/delete.svg"
@@ -174,8 +170,8 @@ export default function Companies() {
             ))}
           </ul>
 
-          {!companies.length && (
-            <span className={styles.name}>No company found...</span>
+          {!units.length && (
+            <span className={styles.name}>No units found...</span>
           )}
 
           <button
@@ -183,13 +179,16 @@ export default function Companies() {
             className={styles.new}
             onClick={() => setMode('add')}
           >
-            New Company
+            New Unit
           </button>
         </>
       ) : (
         <>
           {mode === 'add' && (
-            <form className={styles.form} onSubmit={handleSubmit(handleany)}>
+            <form
+              className={styles.form}
+              onSubmit={handleSubmit(handleAddUnit)}
+            >
               <div className={styles.wrapper}>
                 <label htmlFor="name" className={styles.label}>
                   Name
@@ -198,7 +197,7 @@ export default function Companies() {
                   id="name"
                   type="text"
                   className={styles.input}
-                  placeholder="Enter your company name here"
+                  placeholder="Enter your unit name here"
                   {...register('name', { required: true })}
                 />
               </div>
@@ -215,7 +214,7 @@ export default function Companies() {
               </button>
 
               <button type="submit" className={cn(styles.new, styles.add)}>
-                {!loading ? 'Add Company' : <Spinner />}
+                {!loading ? 'Add Unit' : <Spinner />}
               </button>
             </form>
           )}
@@ -224,7 +223,7 @@ export default function Companies() {
             <>
               <form
                 className={styles.form}
-                onSubmit={handleSubmit(handleEditCompany)}
+                onSubmit={handleSubmit(handleEditUnit)}
               >
                 <div className={styles.wrapper}>
                   <label htmlFor="name" className={styles.label}>
@@ -234,8 +233,8 @@ export default function Companies() {
                     id="name"
                     type="text"
                     className={styles.input}
-                    defaultValue={selectedCompany?.name}
-                    placeholder="Enter your company name here"
+                    defaultValue={selectedUnit?.name}
+                    placeholder="Enter your unit name here"
                     {...register('name', { required: true })}
                   />
                 </div>
@@ -251,7 +250,7 @@ export default function Companies() {
                   Cancel
                 </button>
                 <button type="submit" className={cn(styles.new, styles.save)}>
-                  {!loading ? 'Save Company' : <Spinner />}
+                  {!loading ? 'Save Unit' : <Spinner />}
                 </button>
               </form>
             </>

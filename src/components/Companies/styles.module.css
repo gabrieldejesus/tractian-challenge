@@ -98,8 +98,8 @@
   box-shadow: 0 0 0 2px var(--black);
 }
 
-.addCompany,
-.saveCompany {
+.add,
+.save {
   margin-top: 16px;
 }
 

@@ -6,6 +6,7 @@ import Companies from '@/components/Companies';
 import Wrapper from '@/components/Wrapper';
 import Table from '@/components/Table';
 import Modal from '@/components/Modal';
+import Units from '@/components/Units';
 
 // utils
 import { useDefault } from '@/contexts/DefaultContext';
@@ -59,9 +60,9 @@ export default function Main() {
             )}
           </Wrapper>
 
-          {/* <Wrapper title="Work Orders" setShowModal={setShowModal}>
+          <Wrapper title="Work Orders" setShowModal={setShowModal}>
             Work Orders
-          </Wrapper> */}
+          </Wrapper>
         </aside>
       </Container>
 
@@ -72,6 +73,7 @@ export default function Main() {
           description={`Add, edit or delete one of your ${modalSelected.toLowerCase()}.`}
         >
           {modalSelected === 'Companies' && <Companies />}
+          {modalSelected === 'Units' && <Units />}
         </Modal>
       )}
     </main>
