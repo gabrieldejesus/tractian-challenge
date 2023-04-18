@@ -21,7 +21,7 @@ export default function Companies() {
   const { register, handleSubmit, resetField } = useForm<IFormInput>();
   const [selectedCompany, setSelectedCompany] = useState<CompanyProps>();
 
-  const handleany: SubmitHandler<IFormInput> = async (data) => {
+  const handleAddCompany: SubmitHandler<IFormInput> = async (data) => {
     try {
       setLoading(true);
       const response = await fetch(
@@ -189,7 +189,10 @@ export default function Companies() {
       ) : (
         <>
           {mode === 'add' && (
-            <form className={styles.form} onSubmit={handleSubmit(handleany)}>
+            <form
+              className={styles.form}
+              onSubmit={handleSubmit(handleAddCompany)}
+            >
               <div className={styles.wrapper}>
                 <label htmlFor="name" className={styles.label}>
                   Name

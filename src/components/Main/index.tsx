@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
 // components
+import UsersTable from '@/components/UsersTable';
 import Container from '@/components/Container';
 import Companies from '@/components/Companies';
 import Wrapper from '@/components/Wrapper';
-import Table from '@/components/Table';
 import Modal from '@/components/Modal';
 import Units from '@/components/Units';
 
@@ -25,7 +25,7 @@ export default function Main() {
           </Wrapper>
 
           <Wrapper title="Users" setShowModal={setShowModal}>
-            <Table />
+            <UsersTable tableMode="view" />
           </Wrapper>
         </section>
 
@@ -61,7 +61,7 @@ export default function Main() {
           </Wrapper>
 
           <Wrapper title="Work Orders" setShowModal={setShowModal}>
-            Work Orders
+            ...
           </Wrapper>
         </aside>
       </Container>
@@ -74,6 +74,7 @@ export default function Main() {
         >
           {modalSelected === 'Companies' && <Companies />}
           {modalSelected === 'Units' && <Units />}
+          {modalSelected === 'Users' && <UsersTable tableMode="admin" />}
         </Modal>
       )}
     </main>
