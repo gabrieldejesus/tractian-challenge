@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 
 // components
+import ChecklistView from '@/components/ChecklistView';
 import UsersTable from '@/components/UsersTable';
 import Container from '@/components/Container';
 import Companies from '@/components/Companies';
@@ -11,11 +12,14 @@ import Units from '@/components/Units';
 
 // utils
 import { useDefault } from '@/contexts/DefaultContext';
+import { ChecklistProps } from '@/types';
 import styles from './styles.module.css';
 
 export default function Main() {
-  const { companies, units, workorders, modalSelected } = useDefault();
   const [showModal, setShowModal] = useState(false);
+  const [checklistSelected, setChecklistSelected] =
+    useState<ChecklistProps[]>();
+  const { companies, units, workorders, modalSelected } = useDefault();
 
   return (
     <main className={styles.main}>
@@ -66,7 +70,12 @@ export default function Main() {
               {workorders?.map((work, index) => (
                 <li key={index} className={styles.item}>
                   <span className={styles.title}>{work.title}</span>
-                  <button type="button" className={styles.button}>
+
+                  <button
+                    type="button"
+                    className={styles.button}
+                    onClick={() => setChecklistSelected(work.checklist)}
+                  >
                     <Image src="/note.svg" alt="Note" width={18} height={18} />
                   </button>
                 </li>
@@ -75,6 +84,13 @@ export default function Main() {
 
             {!workorders.length && (
               <span className={styles.title}>No work orders found...</span>
+            )}
+
+            {checklistSelected && (
+              <ChecklistView
+                checklistSelected={checklistSelected}
+                setChecklistSelected={setChecklistSelected}
+              />
             )}
           </Wrapper>
         </aside>
