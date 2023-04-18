@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Image from 'next/image';
 
 // components
 import UsersTable from '@/components/UsersTable';
@@ -13,7 +14,7 @@ import { useDefault } from '@/contexts/DefaultContext';
 import styles from './styles.module.css';
 
 export default function Main() {
-  const { companies, units, modalSelected } = useDefault();
+  const { companies, units, workorders, modalSelected } = useDefault();
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -61,7 +62,20 @@ export default function Main() {
           </Wrapper>
 
           <Wrapper title="Work Orders" setShowModal={setShowModal}>
-            ...
+            <ul className={styles.list}>
+              {workorders?.map((work, index) => (
+                <li key={index} className={styles.item}>
+                  <span className={styles.title}>{work.title}</span>
+                  <button type="button" className={styles.button}>
+                    <Image src="/note.svg" alt="Note" width={18} height={18} />
+                  </button>
+                </li>
+              ))}
+            </ul>
+
+            {!workorders.length && (
+              <span className={styles.title}>No work orders found...</span>
+            )}
           </Wrapper>
         </aside>
       </Container>

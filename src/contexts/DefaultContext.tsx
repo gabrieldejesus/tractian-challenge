@@ -7,6 +7,7 @@ import {
   DefaultProviderProps,
   CompanyProps,
   UnitProps,
+  WorkorderProps,
 } from '@/types';
 
 const contextDefaultValues: DefaultContextProps = {
@@ -14,10 +15,12 @@ const contextDefaultValues: DefaultContextProps = {
   companies: [],
   units: [],
   modalSelected: '',
+  workorders: [],
   handleUsers: () => null,
   handleCompanies: () => null,
   handleUnits: () => null,
   handleModalSelected: () => null,
+  handleWorkorders: () => null,
 };
 
 const DefaultContext = createContext<DefaultContextProps>(contextDefaultValues);
@@ -31,6 +34,7 @@ export function DefaultProvider({ children }: DefaultProviderProps) {
   const [companies, setCompanies] = useState<CompanyProps[]>([]);
   const [units, setUnits] = useState<UnitProps[]>([]);
   const [modalSelected, setModalSelected] = useState<string>('');
+  const [workorders, setWorkorders] = useState<WorkorderProps[]>([]);
 
   const handleUsers = (value: UserProps[]) => {
     setUsers(value);
@@ -48,15 +52,21 @@ export function DefaultProvider({ children }: DefaultProviderProps) {
     setModalSelected(value);
   };
 
+  const handleWorkorders = (value: WorkorderProps[]) => {
+    setWorkorders(value);
+  };
+
   const value = {
     users,
     companies,
     units,
+    workorders,
     modalSelected,
     handleUsers,
     handleCompanies,
     handleUnits,
     handleModalSelected,
+    handleWorkorders,
   };
 
   return (

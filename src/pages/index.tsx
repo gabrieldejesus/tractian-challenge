@@ -9,13 +9,20 @@ import Main from '@/components/Main';
 import { HomeProps } from '@/types';
 import { useDefault } from '@/contexts/DefaultContext';
 
-export default function Home({ users, companies, units }: HomeProps) {
-  const { handleUsers, handleCompanies, handleUnits } = useDefault();
+export default function Home({
+  users,
+  companies,
+  units,
+  workorders,
+}: HomeProps) {
+  const { handleUsers, handleCompanies, handleUnits, handleWorkorders } =
+    useDefault();
 
   useEffect(() => {
     handleUsers(users);
     handleCompanies(companies);
     handleUnits(units);
+    handleWorkorders(workorders);
   }, []);
 
   return (
@@ -36,8 +43,19 @@ export async function getStaticProps() {
   const units = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/units`);
   const unitsData = await units.json();
 
+  const workorders = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/workorders`,
+  );
+
+  const workordersData = await workorders.json();
+
   return {
-    props: { users: usersData, companies: companiesData, units: unitsData },
+    props: {
+      users: usersData,
+      companies: companiesData,
+      units: unitsData,
+      workorders: workordersData,
+    },
     revalidate: 300,
   };
 }
