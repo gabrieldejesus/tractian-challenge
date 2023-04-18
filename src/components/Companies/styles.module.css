@@ -43,7 +43,8 @@
   margin-right: 8px;
 }
 
-.new {
+.new,
+.cancel {
   border: 0;
   height: 56px;
   display: flex;
@@ -53,9 +54,53 @@
   line-height: 30px;
   align-items: center;
   border-radius: 10px;
-  color: var(--white);
   justify-content: center;
+}
+
+.new {
+  color: var(--white);
   background: var(--black);
+}
+
+.cancel {
+  height: 48px;
+  color: var(--black);
+  background: transparent;
+  box-shadow: 0 0 0 2px var(--black);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  border: 0;
+  height: 56px;
+  outline: unset;
+  padding: 0 24px;
+  margin-top: 8px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--black);
+  box-shadow: 0 0 0 2px var(--black);
+}
+
+.input:focus,
+.input:hover {
+  box-shadow: 0 0 0 2px var(--black);
+}
+
+.addCompany,
+.saveCompany {
+  margin-top: 16px;
 }
 
 /* Small devices (landscape phones, 425px and up) */

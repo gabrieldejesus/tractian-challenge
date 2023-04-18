@@ -6,7 +6,6 @@ import Companies from '@/components/Companies';
 import Wrapper from '@/components/Wrapper';
 import Table from '@/components/Table';
 import Modal from '@/components/Modal';
-import List from '@/components/List';
 
 // utils
 import { useDefault } from '@/contexts/DefaultContext';
