@@ -3,6 +3,7 @@ import { ReactNode } from 'react';
 export type DefaultProviderProps = { children: ReactNode };
 
 export interface DefaultContextProps {
+  assets: AssetProps[];
   users: UserProps[];
   companies: CompanyProps[];
   units: UnitProps[];
@@ -13,6 +14,38 @@ export interface DefaultContextProps {
   handleUnits: (value: UnitProps[]) => void;
   handleModalSelected: (value: string) => void;
   handleWorkOrders: (value: WorkOrderProps[]) => void;
+  handleAssets: (value: AssetProps[]) => void;
+}
+
+export interface HealthHistoryProps {
+  status: string;
+  timestamp: string;
+}
+
+export interface MetricsProps {
+  lastUptimeAt: string;
+  totalCollectsUptime: number;
+  totalUptime: number;
+}
+
+export interface SpecificationsProps {
+  maxTemp: number;
+}
+
+export interface AssetProps {
+  id: number;
+  name: string;
+  model: string;
+  image: string;
+  status: string;
+  unitId: number;
+  sensors: string[];
+  companyId: number;
+  healthscore: number;
+  metrics: MetricsProps;
+  assignedUserIds: number[];
+  healthHistory: HealthHistoryProps[];
+  specifications: SpecificationsProps;
 }
 
 export interface UserProps {
@@ -50,6 +83,7 @@ export interface WorkOrderProps {
 }
 
 export interface HomeProps {
+  assets: AssetProps[];
   users: UserProps[];
   companies: CompanyProps[];
   units: UnitProps[];

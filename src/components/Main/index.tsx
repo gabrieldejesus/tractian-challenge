@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 
 // components
 import ChecklistView from '@/components/ChecklistView';
@@ -10,6 +11,7 @@ import Companies from '@/components/Companies';
 import Wrapper from '@/components/Wrapper';
 import Modal from '@/components/Modal';
 import Units from '@/components/Units';
+const AssetsView = dynamic(() => import('@/components/AssetsView'));
 
 // utils
 import { useDefault } from '@/contexts/DefaultContext';
@@ -26,7 +28,7 @@ export default function Main() {
       <Container className={styles.container}>
         <section className={styles.section}>
           <Wrapper title="Assets" setShowModal={setShowModal}>
-            Assets
+            <AssetsView />
           </Wrapper>
 
           <Wrapper title="Users" setShowModal={setShowModal}>

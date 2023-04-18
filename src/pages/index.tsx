@@ -10,15 +10,22 @@ import { HomeProps } from '@/types';
 import { useDefault } from '@/contexts/DefaultContext';
 
 export default function Home({
+  assets,
   users,
   companies,
   units,
   workorders,
 }: HomeProps) {
-  const { handleUsers, handleCompanies, handleUnits, handleWorkOrders } =
-    useDefault();
+  const {
+    handleAssets,
+    handleUsers,
+    handleCompanies,
+    handleUnits,
+    handleWorkOrders,
+  } = useDefault();
 
   useEffect(() => {
+    handleAssets(assets);
     handleUsers(users);
     handleCompanies(companies);
     handleUnits(units);
@@ -34,6 +41,9 @@ export default function Home({
 }
 
 export async function getStaticProps() {
+  const assets = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/assets`);
+  const assetsData = await assets.json();
+
   const users = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users`);
   const usersData = await users.json();
 
@@ -51,6 +61,7 @@ export async function getStaticProps() {
 
   return {
     props: {
+      assets: assetsData,
       users: usersData,
       companies: companiesData,
       units: unitsData,
