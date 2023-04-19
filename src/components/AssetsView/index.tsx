@@ -35,7 +35,7 @@ export default function AssetsView() {
     },
     series: assets.map((item: AssetProps) => ({
       name: item.name,
-      data: item.healthHistory.map((history: HealthHistoryProps) => [
+      data: item.healthHistory?.map((history: HealthHistoryProps) => [
         new Date(history.timestamp).getTime(),
         statusMapping[history.status],
       ]),

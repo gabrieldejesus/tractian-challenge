@@ -9,6 +9,7 @@ import WorkOrders from '@/components/WorkOrders';
 import Container from '@/components/Container';
 import Companies from '@/components/Companies';
 import Wrapper from '@/components/Wrapper';
+import Assets from '@/components/Assets';
 import Modal from '@/components/Modal';
 import Units from '@/components/Units';
 const AssetsView = dynamic(() => import('@/components/AssetsView'));
@@ -104,6 +105,7 @@ export default function Main() {
           setShowModal={setShowModal}
           description={`Add, edit or delete one of your ${modalSelected.toLowerCase()}.`}
         >
+          {modalSelected === 'Assets' && <Assets />}
           {modalSelected === 'Companies' && <Companies />}
           {modalSelected === 'Units' && <Units />}
           {modalSelected === 'Users' && <UsersTable tableMode="admin" />}
