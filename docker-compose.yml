@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  tractian-challenge:
+    restart: always
+    container_name: tractian-challenge
+    env_file:
+      - .env.local
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
