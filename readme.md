@@ -26,14 +26,6 @@
 - ⚙️ EditorConfig - Consistent coding styles across editors and IDEs
 - 🗂 Path Mapping — Import components or images using the `@` prefix
 
-## 🕹️ Preview
-
-To see a preview of this project just click here: [Preview Website](https://www.tractian-challenge.gabrieldejesus.dev/)
-
-## 🎨 Design
-
-If you want to see the design I created for this challenge, just click here: [Figma Design](https://www.figma.com/file/nUAj18mMktBpxWae9nWWMf/tractian-challenge)
-
 ## 🚀 Quick Start
 
 **Clone repository**
